@@ -57,17 +57,29 @@ public class SolverForQueensPuzzle {
          that starts -- and ends -- with that board.
      */
     private void recordSolutionsStarted() {
-
+		
         // Which has been requested, a base case or recursive case?
-            // your code here
-            // action(s) for base case(s)
+        if (inProgress.accept()) {
+			BoardForQueensPuzzle snapshot = new BoardForQueensPuzzle(inProgress);
+			solutions.add(snapshot);
+			// action(s) for base case(s)
             System.out.println( "  for debugging: base case detected for..."
                               + System.lineSeparator()
                               + inProgress
                               );
-
-            // action for recursive cases
-            // your code here
+			return;
+            
+		} else {
+			if (inProgress.lastIsNg()) {
+				return;
+			}
+		}
+		for( int file = 0; file < inProgress.ranks(); file++) {
+            nBoardsConsidered++;
+            inProgress.populate( file);
+            recordSolutionsStarted();
+            inProgress.depopulate();
+		}
             System.out.println( "  for debugging: recursive case detected for..."
                               + System.lineSeparator()
                               + inProgress
