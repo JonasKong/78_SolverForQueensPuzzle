@@ -1,1 +1,2 @@
-I had no help on this. I probably should have.
+I took knowledge from Tuesday's class to build the Copy constructor. 
+I built recordSolutionsStarted() myself, 
